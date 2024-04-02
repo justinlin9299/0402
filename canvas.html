@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Paint Board</title>
+    <link rel="stylesheet" href="canvas.css">
+    <script src="canvas.js"></script>
+</head>
+<body>
+    <div>
+        <canvas id="whiteboard" width="800" height="600"></canvas>
+        <textarea id="textInput" class="text-input"></textarea>
+        <input type="file" id="ImageInput" accept="image/*" style="display: none;">
+    </div>
+    <div class="vertical-toolbar">
+        <div class="tool-item" onclick="selectTool('pen')">       
+            <img src="img/pen.png" alt="Pen Icon">
+            <span>Pen</span>
+        </div>
+        <div class="tool-item" onclick="selectTool('eraser')">
+            <img src="img/eraser.png" alt="Eraser Icon">
+            <span>Eraser</span>
+        </div>
+        <div class="tool-item" onclick="selectTool('text')">
+            <img src="img/text.png" alt="Text Icon">
+            <span>Text</span>
+        </div>
+        <div class="tool-item" onclick="selectTool('circle')">
+            <img src="img/circle.png" alt="Circle Icon">
+            <span>Circle</span>
+        </div>
+        <div class="tool-item" onclick="selectTool('rectangle')">
+            <img src="img/rectangle.png" alt="Rectangle Icon">
+            <span>Rectangle</span>
+        </div>
+        <div class="tool-item" onclick="selectTool('triangle')">
+            <img src="img/triangle.png" alt="Triangle Icon">
+            <span>Triangle</span>
+        </div>
+        <div class="tool-item" onclick="selectTool('reset')">
+            <img src="img/reset.webp" alt="Reset Icon">
+            <span>Reset</span>
+        </div>
+        <div class="tool-item" onclick="selectTool('undo')">
+            <img src="img/undo.webp" alt="Undo Icon">
+            <span>Undo</span>
+        </div>
+        <div class="tool-item" onclick="selectTool('redo')">
+            <img src="img/redo.jpg" alt="Redo Icon">
+            <span>Redo</span>
+        </div>
+        <div class="tool-item" onclick="selectTool('image')">
+            <img src="img/image.png" alt="Image Icon">
+            <span>Image</span> <p> (click canvas->picking->click canvas)</p>
+        </div>
+        <div class="tool-item" onclick="downloadCanvas()">
+            <img src="img/download.png" alt="Download Icon">
+            <span>Download</span>
+        </div>
+        <div class="tool-item" onclick="selectTool('rainbow')">
+            <img src="img/rainbow.png" alt="Rainbow Icon">
+            <span>Rainbow</span>
+        </div>
+    </div>
+    <div class="color-picker">
+        <div class="color" style="background-color: #8B0000" onclick="changeColor('#8B0000')"></div>
+        <div class="color" style="background-color: #B22222" onclick="changeColor('#B22222')"></div>
+        <div class="color" style="background-color: #DC143C" onclick="changeColor('#DC143C')"></div>
+        <div class="color" style="background-color: #FF4500" onclick="changeColor('#FF4500')"></div>
+        <div class="color" style="background-color: #FF6347" onclick="changeColor('#FF6347')"></div>
+
+        <div class="color" style="background-color: #FF8C00" onclick="changeColor('#FF8C00')"></div>
+        <div class="color" style="background-color: #FFA500" onclick="changeColor('#FFA500')"></div>
+        <div class="color" style="background-color: #FFD700" onclick="changeColor('#FFD700')"></div>
+        <div class="color" style="background-color: #FFECB3" onclick="changeColor('#FFECB3')"></div>
+        <div class="color" style="background-color: #FFFACD" onclick="changeColor('#FFFACD')"></div>
+
+        <div class="color" style="background-color: #FFD700" onclick="changeColor('#FFD700')"></div>
+        <div class="color" style="background-color: #FFFF00" onclick="changeColor('#FFFF00')"></div>
+        <div class="color" style="background-color: #FFFFE0" onclick="changeColor('#FFFFE0')"></div>
+        <div class="color" style="background-color: #FFFFF0" onclick="changeColor('#FFFFF0')"></div>
+        <div class="color" style="background-color: #FAFAD2" onclick="changeColor('#FAFAD2')"></div>
+
+        <div class="color" style="background-color: #006400" onclick="changeColor('#006400')"></div>
+        <div class="color" style="background-color: #008000" onclick="changeColor('#008000')"></div>
+        <div class="color" style="background-color: #228B22" onclick="changeColor('#228B22')"></div>
+        <div class="color" style="background-color: #32CD32" onclick="changeColor('#32CD32')"></div>
+        <div class="color" style="background-color: #ADFF2F" onclick="changeColor('#ADFF2F')"></div>
+
+        <div class="color" style="background-color: #000080" onclick="changeColor('#000080')"></div>
+        <div class="color" style="background-color: #00008B" onclick="changeColor('#00008B')"></div>
+        <div class="color" style="background-color: #0000CD" onclick="changeColor('#0000CD')"></div>
+        <div class="color" style="background-color: #0000FF" onclick="changeColor('#0000FF')"></div>
+        <div class="color" style="background-color: #1E90FF" onclick="changeColor('#1E90FF')"></div>
+
+        <div class="color" style="background-color: #4B0082" onclick="changeColor('#4B0082')"></div>
+        <div class="color" style="background-color: #8A2BE2" onclick="changeColor('#8A2BE2')"></div>
+        <div class="color" style="background-color: #483D8B" onclick="changeColor('#483D8B')"></div>
+        <div class="color" style="background-color: #6A5ACD" onclick="changeColor('#6A5ACD')"></div>
+        <div class="color" style="background-color: #9370DB" onclick="changeColor('#9370DB')"></div>
+
+        <div class="color" style="background-color: #3E1B01" onclick="changeColor('#3E1B01')"></div>
+        <div class="color" style="background-color: #654321" onclick="changeColor('#654321')"></div>
+        <div class="color" style="background-color: #8B4513" onclick="changeColor('#8B4513')"></div>
+        <div class="color" style="background-color: #A52A2A" onclick="changeColor('#A52A2A')"></div>
+        <div class="color" style="background-color: #8B0000" onclick="changeColor('#8B0000')"></div>
+
+        <div class="color" style="background-color: #000000" onclick="changeColor('#000000')"></div>
+        <div class="color" style="background-color: #2F4F4F" onclick="changeColor('#2F4F4F')"></div>
+        <div class="color" style="background-color: #696969" onclick="changeColor('#696969')"></div>
+        <div class="color" style="background-color: #A9A9A9" onclick="changeColor('#A9A9A9')"></div>
+        <div class="color" style="background-color: #D3D3D3" onclick="changeColor('#D3D3D3')"></div>
+    </div>
+
+    <div class="slider-container">
+        <p id="PenAndEraserSize">Draw</p>
+        <input type="range" id="sizeSlider" class="slider"  min="1" max="60" value="20" onchange="brushSize(this.value)" >
+        <p id="TextSize">Text</p>
+        <input type="range" id="sizeSlider" class="slider"  min="5" max="45" value="20" onchange="TextSize(this.value)" >
+    </div>
+
+    <div class="font-selector">
+        <p id="fontText">Select Font:</p>
+        <select id="fontSelect" value="Arial" onchange="changeFont()">
+            <option value="Arial">Arial</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Lucida Console">Lucida Console</option>
+            <option value="Impact">Impact</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+        </select>
+    </div>
+</body>
+</html>
